@@ -1,6 +1,6 @@
 databases:
-  - name: placement_db
-    databaseName: placement_db
+  - name: placement_db_j6vp
+    databaseName: placement_db_j6vp
     user: placement_user
     plan: free
 
@@ -15,23 +15,23 @@ services:
     envVars:
       - key: DB_HOST
         fromDatabase:
-          name: placement_db
+          name: placement_db_j6vp
           property: host
       - key: DB_PORT
         fromDatabase:
-          name: placement_db
+          name: placement_db_j6vp
           property: port
       - key: DB_NAME
         fromDatabase:
-          name: placement_db
+          name: placement_db_j6vp
           property: database
       - key: DB_USER
         fromDatabase:
-          name: placement_db
+          name: placement_db_j6vp
           property: user
       - key: DB_PASSWORD
         fromDatabase:
-          name: placement_db
+          name: placement_db_j6vp
           property: password
       - key: SERVER_PORT
         value: 8080
