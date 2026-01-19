@@ -13,15 +13,23 @@ services:
     dockerfilePath: PlacementApplication/demo/Dockerfile
     plan: free
     envVars:
-      - key: SPRING_DATASOURCE_URL
+      - key: DB_HOST
         fromDatabase:
           name: placement_db
-          property: connectionString
-      - key: SPRING_DATASOURCE_USERNAME
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: placement_db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: placement_db
+          property: database
+      - key: DB_USER
         fromDatabase:
           name: placement_db
           property: user
-      - key: SPRING_DATASOURCE_PASSWORD
+      - key: DB_PASSWORD
         fromDatabase:
           name: placement_db
           property: password
