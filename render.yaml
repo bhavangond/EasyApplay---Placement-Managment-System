@@ -3,7 +3,7 @@ services:
   - type: web
     name: placement-backend
     env: docker
-    context: PlacementApplication/PlacementApplication/demo
+    context: PlacementApplication/demo
     dockerfilePath: Dockerfile
     plan: free
     envVars:
@@ -21,8 +21,8 @@ services:
     name: placement-frontend
     env: static
     plan: free
-    buildCommand: cd PlacementApplication/PlacementApplication/Placement-frontend/frontend && npm install && npm run build
-    staticPublishPath: PlacementApplication/PlacementApplication/Placement-frontend/frontend/build
+    buildCommand: cd PlacementApplication/Placement-frontend/frontend && npm install && npm run build
+    staticPublishPath: PlacementApplication/Placement-frontend/frontend/build
     envVars:
       - key: REACT_APP_API_URL
         fromService:
