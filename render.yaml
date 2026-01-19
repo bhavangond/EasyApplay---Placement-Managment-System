@@ -1,3 +1,9 @@
+databases:
+  - name: placement_db
+    databaseName: placement_db
+    user: placement_user
+    plan: free
+
 services:
   # Backend Service (Spring Boot)
   - type: web
@@ -8,11 +14,17 @@ services:
     plan: free
     envVars:
       - key: SPRING_DATASOURCE_URL
-        sync: false # User must provide this (e.g., external MySQL or Render default fallback if defined)
+        fromDatabase:
+          name: placement_db
+          property: connectionString
       - key: SPRING_DATASOURCE_USERNAME
-        sync: false
+        fromDatabase:
+          name: placement_db
+          property: user
       - key: SPRING_DATASOURCE_PASSWORD
-        sync: false
+        fromDatabase:
+          name: placement_db
+          property: password
       - key: SERVER_PORT
         value: 8080
 
