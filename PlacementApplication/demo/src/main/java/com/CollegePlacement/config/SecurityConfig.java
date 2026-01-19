@@ -67,8 +67,15 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // ** IMPORTANT: REPLACE WITH YOUR FRONTEND URL **
-        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+        // Dynamic CORS: Read allowed origins from environment variable
+        // Format: comma-separated URLs, e.g., "http://localhost:3000,https://placement-frontend-4p5k.onrender.com"
+        String allowedOrigins = System.getenv("ALLOWED_ORIGINS");
+        if (allowedOrigins != null && !allowedOrigins.isEmpty()) {
+            configuration.setAllowedOrigins(Arrays.asList(allowedOrigins.split(",")));
+        } else {
+            // Fallback to localhost for local development
+            configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+        }
         
         // Allow the standard methods, including OPTIONS for the preflight check
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));

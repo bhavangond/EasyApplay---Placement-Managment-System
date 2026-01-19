@@ -35,6 +35,8 @@ services:
           property: password
       - key: SERVER_PORT
         value: 8080
+      - key: ALLOWED_ORIGINS
+        value: http://localhost:3000,https://placement-frontend-4p5k.onrender.com
 
   # Frontend Service (React)
   - type: web
