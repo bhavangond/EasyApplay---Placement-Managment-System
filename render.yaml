@@ -13,10 +13,26 @@ services:
     dockerfilePath: PlacementApplication/demo/Dockerfile
     plan: free
     envVars:
-      - key: RENDER_DB_URL
+      - key: DB_HOST
         fromDatabase:
           name: placement_db
-          property: connectionString
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: placement_db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: placement_db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: placement_db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: placement_db
+          property: password
       - key: SERVER_PORT
         value: 8080
 
